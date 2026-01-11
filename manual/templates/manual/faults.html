@@ -1,0 +1,139 @@
+<!-- manual/templates/manual/faults.html -->
+{% extends 'manual/base.html' %}
+
+{% block title %}Диагностика неисправностей - ИЭТР WebShield FilterLib{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                <li class="breadcrumb-item active">Диагностика неисправностей</li>
+            </ol>
+        </nav>
+        
+        <h1 class="display-5 mb-4">
+            <i class="bi bi-bug text-danger"></i>
+            Диагностика неисправностей
+        </h1>
+        
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i>
+            Используйте интерактивный диагностический диалог для выявления и устранения проблем 
+            в работе библиотеки фильтрации уязвимостей.
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-clipboard-check"></i>
+                    Начать диагностику
+                </h5>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Интерактивный диагностический диалог</h5>
+                <p class="card-text">
+                    Система задаст вам ряд вопросов о симптомах проблемы и на основе ваших ответов 
+                    определит наиболее вероятную неисправность и предложит решение.
+                </p>
+                <div class="text-center">
+                    <a href="{% url 'diagnostic_start' %}" class="btn btn-danger btn-lg">
+                        <i class="bi bi-play-circle"></i>
+                        Начать диагностический диалог
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card shadow">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0">
+                    <i class="bi bi-lightning-charge"></i>
+                    Быстрый доступ
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>Распространенные неисправности:</p>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="bi bi-x-circle text-danger"></i>
+                        Ложные срабатывания фильтра
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="bi bi-exclamation-triangle text-warning"></i>
+                        Пропуск XSS-атак
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="bi bi-speedometer text-info"></i>
+                        Падение производительности
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="bi bi-arrow-repeat text-success"></i>
+                        Проблемы совместимости
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-list-check"></i>
+                    Категории неисправностей
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-primary">
+                            <div class="card-body text-center">
+                                <i class="bi bi-chat-square-text text-primary" style="font-size: 2rem;"></i>
+                                <h6 class="mt-2">Ложные срабатывания</h6>
+                                <small class="text-muted">False Positive</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-warning">
+                            <div class="card-body text-center">
+                                <i class="bi bi-shield-x text-warning" style="font-size: 2rem;"></i>
+                                <h6 class="mt-2">Пропуск атак</h6>
+                                <small class="text-muted">False Negative</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-info">
+                            <div class="card-body text-center">
+                                <i class="bi bi-graph-down text-info" style="font-size: 2rem;"></i>
+                                <h6 class="mt-2">Производительность</h6>
+                                <small class="text-muted">Performance Issues</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card h-100 border-success">
+                            <div class="card-body text-center">
+                                <i class="bi bi-puzzle text-success" style="font-size: 2rem;"></i>
+                                <h6 class="mt-2">Интеграция</h6>
+                                <small class="text-muted">Integration Problems</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

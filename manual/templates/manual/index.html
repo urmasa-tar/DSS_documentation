@@ -1,0 +1,148 @@
+<!-- manual/templates/manual/index.html -->
+{% extends 'manual/base.html' %}
+
+{% block title %}Главная - ИЭТР WebShield FilterLib{% endblock %}
+
+{% block content %}
+<div class="row mb-5 fade-in">
+    <div class="col-12">
+        <div class="jumbotron bg-primary text-white rounded-3 p-5 shadow">
+            <h1 class="display-4">
+                <i class="bi bi-shield-check"></i>
+                ИЭТР WebShield FilterLib
+            </h1>
+            <p class="lead mt-3">
+                Интерактивное электронное техническое руководство для библиотеки фильтрации уязвимостей веб-приложений.
+                Специализированное решение для обнаружения и предотвращения XSS и SQL-инъекций.
+            </p>
+            <hr class="my-4 bg-white">
+            <p>
+                Данная система предоставляет полный набор инструментов для технического обслуживания, 
+                диагностики неисправностей и справочной информации по работе библиотеки фильтрации.
+            </p>
+            <a href="{% url 'faults_list' %}" class="btn btn-light btn-lg mt-3">
+                <i class="bi bi-bug"></i> Начать диагностику
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Быстрый доступ -->
+    <div class="col-md-3 mb-4">
+        <div class="card nav-card bg-info text-white h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-bug"></i>
+                <h4 class="card-title mt-2">Диагностика</h4>
+                <p class="card-text">Интерактивный диалог для выявления и устранения неисправностей</p>
+                <a href="{% url 'faults_list' %}" class="btn btn-light stretched-link">Перейти</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-4">
+        <div class="card nav-card bg-success text-white h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-tools"></i>
+                <h4 class="card-title mt-2">Регламентные работы</h4>
+                <p class="card-text">Плановое обслуживание и профилактические мероприятия</p>
+                <a href="{% url 'maintenance' %}" class="btn btn-light stretched-link">Перейти</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-4">
+        <div class="card nav-card bg-warning text-dark h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-book"></i>
+                <h4 class="card-title mt-2">Справочник</h4>
+                <p class="card-text">Техническая документация и справочные материалы</p>
+                <a href="{% url 'knowledge_base' %}" class="btn btn-dark stretched-link">Перейти</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-4">
+        <div class="card nav-card bg-secondary text-white h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-diagram-3"></i>
+                <h4 class="card-title mt-2">Архитектура</h4>
+                <p class="card-text">Структура и принципы работы библиотеки фильтрации</p>
+                <a href="{% url 'knowledge_base' %}#architecture" class="btn btn-light stretched-link">Перейти</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Основные возможности
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        Обнаружение XSS-атак всех типов (Reflected, Stored, DOM-based)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        Защита от SQL-инъекций различных видов
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        Модульная архитектура для легкой интеграции
+                    </li>
+                    <li class="list-group-item">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        Минимальное влияние на производительность
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-speedometer2"></i>
+                    Статистика использования
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="p-3 border rounded bg-light">
+                            <h3 class="text-primary">4+</h3>
+                            <p class="mb-0">Типа неисправностей</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 border rounded bg-light">
+                            <h3 class="text-success">4+</h3>
+                            <p class="mb-0">Регламентных работы</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <div class="p-3 border rounded bg-light">
+                            <h3 class="text-warning">100%</h3>
+                            <p class="mb-0">Интерактивность</p>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <div class="p-3 border rounded bg-light">
+                            <h3 class="text-info">24/7</h3>
+                            <p class="mb-0">Доступность</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

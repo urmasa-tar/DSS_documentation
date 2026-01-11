@@ -1,0 +1,149 @@
+<!-- manual/templates/manual/diagnostic.html -->
+{% extends 'manual/base.html' %}
+
+{% block title %}Диагностический диалог - ИЭТР WebShield FilterLib{% endblock %}
+
+{% block extra_css %}
+<style>
+    .diagnostic-container {
+        min-height: 400px;
+    }
+    
+    .solution-card {
+        animation: slideIn 0.5s ease-out;
+    }
+    
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'faults_list' %}">Диагностика</a></li>
+                <li class="breadcrumb-item active">Диагностический диалог</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-chat-square-text"></i>
+                    Диагностический диалог
+                    <span id="current-step" class="badge bg-light text-dark float-end">Шаг 1 из 3</span>
+                </h4>
+            </div>
+            
+            <div class="card-body diagnostic-container">
+                <!-- Прогресс бар -->
+                <div class="progress-container mb-4">
+                    <div class="progress-label">Прогресс диагностики</div>
+                    <div class="progress" style="height: 10px;">
+                        <div id="progress-bar" class="progress-bar bg-success" 
+                             role="progressbar" style="width: 0%" 
+                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                
+                <!-- Область вопросов и ответов -->
+                <div id="question-area">
+                    <!-- Вопросы будут загружаться здесь через JavaScript -->
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Загрузка...</span>
+                        </div>
+                        <p class="mt-3">Инициализация диагностической системы...</p>
+                    </div>
+                </div>
+                
+                <!-- Область решения -->
+                <div id="solution-area" class="d-none">
+                    <!-- Решение будет загружено здесь -->
+                </div>
+            </div>
+            
+            <div class="card-footer bg-light">
+                <div class="d-flex justify-content-between">
+                    <button id="prev-btn" class="btn btn-outline-secondary" disabled>
+                        <i class="bi bi-arrow-left"></i> Назад
+                    </button>
+                    <button id="restart-btn" class="btn btn-outline-warning">
+                        <i class="bi bi-arrow-clockwise"></i> Начать заново
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card shadow mt-4">
+            <div class="card-body">
+                <h5>
+                    <i class="bi bi-info-circle text-info"></i>
+                    Как работает диагностика
+                </h5>
+                <p class="mb-0">
+                    Система использует древовидную логику для определения неисправности. 
+                    Отвечайте на вопросы максимально точно. На основе ваших ответов будет 
+                    определен наиболее вероятный диагноз и предложено решение.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/manual/js/diagnostic.js"></script>
+<script>
+    const diagnosticData = {
+        questions: [
+            {
+                id: 1,
+                text: "Какая основная проблема наблюдается в работе фильтра?",
+                answers: [
+                    { text: "Фильтр блокирует легитимные запросы (ложные срабатывания)", next_question: 2 },
+                    { text: "Фильтр пропускает вредоносные запросы", next_question: 3 },
+                    { text: "Заметное падение производительности приложения", next_question: 4 },
+                    { text: "Конфликты с другими компонентами системы", next_question: 5 }
+                ]
+            },
+            {
+                id: 2,
+                text: "Какие легитимные запросы блокируются?",
+                answers: [
+                    { text: "SQL-запросы с использованием JOIN операций", next_question: 21 },
+                    { text: "Запросы содержащие специальные символы (<, >, &)", next_question: 22 },
+                    { text: "Запросы с кодированными символами (Unicode, Base64)", next_question: 23 }
+                ]
+            },
+            {
+                id: 21,
+                text: "Определена проблема: Ложные срабатывания на сложных SQL-запросах",
+                is_final: true,
+                solution: {
+                    title: "Решение: Настройка фильтра SQL-инъекций",
+                    steps: [
+                        "Добавьте исключения для легитимных SQL-паттернов в конфигурационном файле",
+                        "Настройте чувствительность фильтра для JOIN операций",
+                        "Проверьте корректность работы после изменений на тестовых запросах"
+                    ]
+                }
+            }
+        ]
+    };
+    
+    // Инициализация диагностики
+    document.addEventListener('DOMContentLoaded', function() {
+        initDiagnostic(diagnosticData);
+    });
+</script>
+{% endblock %}

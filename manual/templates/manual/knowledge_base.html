@@ -1,0 +1,60 @@
+<!-- manual/templates/manual/knowledge_base.html -->
+{% extends 'manual/base.html' %}
+
+{% block title %}Справочная информация - ИЭТР WebShield FilterLib{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
+                <li class="breadcrumb-item active">Справочная информация</li>
+            </ol>
+        </nav>
+        
+        <h1 class="display-5 mb-4">
+            <i class="bi bi-book text-warning"></i>
+            Справочная информация
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="bi bi-list"></i> Содержание</h5>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="#architecture" class="list-group-item list-group-item-action">
+                    Архитектура библиотеки
+                </a>
+                <a href="#modules" class="list-group-item list-group-item-action">
+                    Модули и компоненты
+                </a>
+                <a href="#installation" class="list-group-item list-group-item-action">
+                    Установка и настройка
+                </a>
+                <a href="#api" class="list-group-item list-group-item-action">
+                    API документация
+                </a>
+                <a href="#best-practices" class="list-group-item list-group-item-action">
+                    Лучшие практики
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-8">
+        <div id="architecture" class="card shadow mb-4 article-card">
+            <div class="card-body">
+                <h4 class="card-title">Архитектура библиотеки WebShield FilterLib</h4>
+                <p>Основные компоненты и принципы работы...</p>
+            </div>
+        </div>
+        
+        <!-- Добавьте остальные разделы аналогичным образом -->
+    </div>
+</div>
+{% endblock %}

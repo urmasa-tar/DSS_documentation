@@ -1,0 +1,97 @@
+<!-- manual/templates/manual/base.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИЭТР WebShield FilterLib - {% block title %}Главная{% endblock %}</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link href="/static/manual/css/style.css" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <i class="bi bi-shield-check"></i>
+                ИЭТР WebShield FilterLib
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'index' %}">
+                            <i class="bi bi-house-door"></i> Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'faults' in request.path %}active{% endif %}" href="{% url 'faults_list' %}">
+                            <i class="bi bi-bug"></i> Диагностика неисправностей
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'maintenance' in request.path %}active{% endif %}" href="{% url 'maintenance' %}">
+                            <i class="bi bi-tools"></i> Регламентные работы
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'knowledge' in request.path %}active{% endif %}" href="{% url 'knowledge_base' %}">
+                            <i class="bi bi-book"></i> Справочная информация
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container my-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-light text-dark py-4 mt-5 border-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>ИЭТР WebShield FilterLib</h5>
+                    <p>Интерактивное электронное техническое руководство<br>
+                    для библиотеки фильтрации уязвимостей веб-приложений</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>Курсовая работа<br>
+                    "Управление ЖЦ объектов"<br>
+                    © {% now "Y" %}</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
