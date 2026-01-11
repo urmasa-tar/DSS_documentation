@@ -5,11 +5,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-your-secret-key-here'
+SECRET_KEY = 'django-insecure-your-secret-key-change-this-for-production'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']  # Для разработки, потом изменить
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'manual',  # Наше приложение
+    'manual',
 ]
 
 MIDDLEWARE = [
@@ -80,9 +80,10 @@ TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_TZ = True
 
+# Исправленная строка!
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "manual/static",
 ]
-
-DEFAULT_AUTO_FIELD = 'django.db.assets.Field'
