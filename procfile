@@ -1,0 +1,3 @@
+# Procfile
+web: gunicorn ietr_site.wsgi:application
+release: python manage.py migrate
